@@ -33,6 +33,9 @@ public:
 	double getGia() const{
 		return gia;
 	}
+	void updateSoLuongTon(int newSoLuongTon){
+		soLuongTon = newSoLuongTon;
+	}
 	~SanPham(){}
 };
 
