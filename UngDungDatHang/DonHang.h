@@ -3,7 +3,7 @@
 #include <ctime>
 #include <vector>
 #include <iostream>
-#include "Muc trong gio hang.h"
+#include "MucGioHang.h"
 #include "SanPham.h"
 using namespace std;
 class DonHang {
@@ -16,7 +16,7 @@ class DonHang {
         double tongDonHang;
         string trangThai;
     public:
-        Order (string id, tm od, tm estimate, vector<CartItem> item, double fee, double sum)
+        DonHang (string id, tm od, tm estimate, vector<CartItem> item, double fee, double sum)
         : maDon(id), ngayDatHang(od), duTinhNgayGiaoHang(estimate), donHang(item), phiShip(fee),
         tongDonHang(sum), trangThai("Cho xac nhan"){
             tinhNgayGiaoHang();

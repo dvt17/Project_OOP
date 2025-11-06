@@ -8,7 +8,7 @@
 using namespace std;
 
 int main(){
-    ifstream file(SanPham.txt);
+    ifstream file("SanPham.txt");
     vector<SanPham> ds;
     SanPham sp;
     while (file >> sp) {
@@ -25,6 +25,7 @@ int main(){
     while (ok) {
         cout << "Nhap lua chon: ";
         cin >> c;
+
         if (c == 1) {
             string tk, mk;
             cout << "Nhap tai khoan: ";
@@ -32,7 +33,7 @@ int main(){
             cout << "Nhap mat khau: ";
             cin >> mk;
             User u(tk, mk);
-            u.ghiFile()
+            u.ghiFile();
             cout << "Dang ky thanh cong!\n";
         }else if(c == 2){
             string tk, mk;
@@ -40,7 +41,7 @@ int main(){
             cin >> tk;
             cout << "Nhap mat khau: ";
             cin >> mk;
-            if (u.dangNhap(tk, mk) {
+            if (u.dangNhap(tk, mk)) {
                 cout << "Dang nhap thanh cong!\n";
             }
             else {
