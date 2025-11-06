@@ -47,5 +47,6 @@ public:
 	void setTP(string tp) {
 		tenTP = tp;
 	}
+	~DiaChi(){}
 };
 
