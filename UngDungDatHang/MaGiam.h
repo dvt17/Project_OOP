@@ -33,7 +33,7 @@ public:
 		}
 	}
 	float DungMa() {
-		if (MaGiam::HieuLuc()) {
+		if (HieuLuc()) {
 			SuDung = false;
 			return GiaTri;
 		}

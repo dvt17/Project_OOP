@@ -13,7 +13,6 @@ private:
     int luotTro1, luotTro2, luotTro3;
     int chonTro;
     time_t thoiGianBatDau;
-    bool dangChoi;
 public:
     TroChoi(string ten = "Khach") {
         tenNguoiChoi = ten;
