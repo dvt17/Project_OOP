@@ -8,6 +8,7 @@ private:
 	string maSanPham, tenSanPham, danhMuc;
 	double gia, soLuongTon;
 public:
+	SanPham(string ma, string ten, string dm, double g, double t) : maSanPham(m), tenSanPham(t), danhMuc(dm), gia(g), soLuongTon(t){}
 	friend istream& operator >>(istream& in, SanPham x) {
 		in >> x.maSanPham >> x.tenSanPham >> x.danhMuc >> x.gia >> x.soLuongTon;
 		return in;
@@ -32,5 +33,6 @@ public:
 	double getGia() const{
 		return gia;
 	}
+	~SanPham(){}
 };
 

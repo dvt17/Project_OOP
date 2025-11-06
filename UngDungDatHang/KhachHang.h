@@ -43,4 +43,5 @@ public:
 	string getEmail() const {
 		return email;
 	}
+	~KhachHang(){}
 };
