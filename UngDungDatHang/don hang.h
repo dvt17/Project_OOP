@@ -3,64 +3,64 @@
 #include <ctime>
 #include <vector>
 #include <iostream>
-#include "CartItem.h"
+#include "Muc trong gio hang.h"
 #include "SanPham.h"
 using namespace std;
-class Order {
+class DonHang {
     private:
-        string orderId;
-        tm orderDate ;
-        tm estimatedDeliveryDate;
-        vector <CartItem> orderItems;
-        double shippingFee;
-        double totalAmount;
-        string status;
+        string maDon;
+        tm ngayDatHang ;
+        tm duTinhNgayGiaoHang;
+        vector <mucTrongGioHang> donHang;
+        double phiShip;
+        double tongDonHang;
+        string trangThai;
     public:
         Order (string id, tm od, tm estimate, vector<CartItem> item, double fee, double sum)
-        : orderId(id), orderDate(od), estimatedDeliveryDate(estimate), orderItems(item), shippingFee(fee),
-        totalAmount(sum), status("Cho xac nhan"){
-            calculateEstimatedDeliveryDate();
+        : maDon(id), ngayDatHang(od), duTinhNgayGiaoHang(estimate), donHang(item), phiShip(fee),
+        tongDonHang(sum), trangThai("Cho xac nhan"){
+            tinhNgayGiaoHang();
         } 
-        double calculateShippingFee()// cho phi giao hang = 10% tong don hang
+        double tinhPhiShip()// cho phi giao hang = 10% tong don hang
         {
-           shippingFee =  0.1 *  totalAmount;
-           return shippingFee;
+           phiShip =  0.1 *  tongDonHang;
+           return phiShip;
         }
-        double calculateTotalAmount(){
-            totalAmount = 0;
-            for (CartItem& item : orderItems){
-                totalAmount += item.calculateSubTotal();
+        double tinhTongDonHang(){
+            tongDonHang = 0;
+            for (mucTrongGioHang& item : donHang){
+                tongDonHang += item.tinhTong();
             }
-            totalAmount += shippingFee;
-            return totalAmount;
+            tongDonHang += phiShip;
+            return tongDonHang;
         };
-        void confirmOrder(){
-            status = "Dang giao";
-            for (CartItem& item : orderItems){
+        void xacNhanDatHang(){
+            trangThai = "Dang giao";
+            for (mucTrongGioHang& item : donHang){
                 SanPham product = item;
                 double newQuantity = product.getSoLuongTon() - item.getQuantity();
                 product.updateSoLuongTon(newQuantity);
             }
         };
          void calculateEstimatedDeliveryDate(){
-            estimatedDeliveryDate.tm_mday = orderDate.tm_mday + 3;
-            mktime(&estimatedDeliveryDate);
+            duTinhNgayGiaoHang.tm_mday = ngayDatHang.tm_mday + 3;
+            mktime(&duTinhNgayGiaoHang);
         };
-         void completeOrder(){
-            if (status == "Dang giao" && estimatedDeliveryDate.tm_mday == orderDate.tm_mday + 3){
-                status = "Da giao don hang thanh cong";
+         void hoanThanhDatHang(){
+            if (trangThai == "Dang giao" && duTinhNgayGiaoHang.tm_mday == ngayDatHang.tm_mday + 3){
+                trangThai = "Da giao don hang thanh cong";
             }
         };
-        string getStatus() {return status;};
+        string getTrangThai() {return trangThai;};
         void displayOrderDetails(){
-            cout << "Ma san pham: " << orderId;
-            cout << "Ngay dat hang: " << asctime(&orderDate);
-            cout << "Trang thai don hang: " << status <<endl;
+            cout << "Ma don hang: " << maDon;
+            cout << "Ngay dat hang: " << asctime(&ngayDatHang);
+            cout << "Trang thai don hang: " << trangThai <<endl;
             cout << "Thong tin ve san pham trong don hang:" << endl;
-            for (CartItem& item : orderItems){
+            for (mucTrongGioHang& item : donHang){
                 item.displayInfo();
             }
-            cout << "Tong so tien cua don hang: " << totalAmount << endl;
+            cout << "Tong so tien cua don hang: " << tongDonHang << endl;
         };
 
 
