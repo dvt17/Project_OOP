@@ -3,22 +3,22 @@
 #include <string>
 #include "SanPham.h"
 using namespace std;
-class CartItem: public SanPham {
-    friend class Order;
+class mucTrongGioHang: public SanPham {
+    friend class DonHang;
     private: 
-        int quantity;
+        int soLuong;
     public:
-        CartItem (string ma, string ten, string dm, double g, double t, int quan = 0) : SanPham(ma, ten, dm, g, t), quantity(quan){}
-        friend istream& operator>> (istream& in, CartItem& c);
-        friend ostream& operator<< (istream& out, CartItem& c);
-        int getQuantity() const { return quantity;}
-        void setQuantity(int qty) { quantity = qty;}
-        double calculateSubTotal(){return getGia() * quantity;}
+        mucTrongGioHang (string ma, string ten, string dm, double g, double t, int quan = 0) : SanPham(ma, ten, dm, g, t), soLuong(quan){}
+        friend istream& operator>> (istream& in, mucTrongGioHang& c);
+        friend ostream& operator<< (istream& out, mucTrongGioHang& c);
+        int getSoLuong() const { return soLuong;}
+        void setSoLuong(int qty) { soLuong = qty;}
+        double tinhTong(){return getGia() * soLuong;}
         void displayInfo(){
             cout << "Ten san pham: " << getTen() << endl;
-            cout << "So luong san pham: " << quantity << endl;
-            cout << "Thanh tien: " << calculateSubTotal << endl;
+            cout << "So luong san pham: " << soLuong << endl;
+            cout << "Thanh tien: " << tinhTong << endl;
         }
-        ~CartItem();
+        ~mucTrongGioHang();
         
 };
