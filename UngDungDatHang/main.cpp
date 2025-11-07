@@ -22,13 +22,13 @@ int main() {
     cout << s << endl;
     int c; bool ok;
     ok = true;
+    string tk, mk;
     User u(tk, mk);
     while (ok) {
         cout << "Nhap lua chon: ";
         cin >> c;
 
         if (c == 1) {
-            string tk, mk;
             cout << "Nhap tai khoan: ";
             cin >> tk;
             cout << "Nhap mat khau: ";
