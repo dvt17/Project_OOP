@@ -3,7 +3,7 @@
 #include "MucGioHang.h"
 #include "SanPham.h" 
 
-class GioHang {
+class GioHang : public mucTrongGioHang {
 private:
     int soLuongHienTai; 
     int timViTri(const SanPham& sanPham) {

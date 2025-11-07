@@ -12,8 +12,8 @@ private:
     int DanhGiaTichCuc;
     int DanhGiaTieuCuc;
 public:
-    DanhGia(string maKH = "", string maSP = "", string MaDG = "", string binhluan = "")
-        : KhachHang(maKH),SanPham(maSP), BinhLuan(binhluan), MaDanhGia(MaDG) {}
+    DanhGia(string maKH = "", string tenKH, string dt, string e, string tenSP, string dm, double g, double t, string maSP = "", string MaDG = "", string binhluan = "")
+        : KhachHang(maKH,tenSP,dt,e),SanPham(maSP,tenSP,dm,g,t), BinhLuan(binhluan), MaDanhGia(MaDG) {}
     float getDiem() const {
         return Diem;
     }
