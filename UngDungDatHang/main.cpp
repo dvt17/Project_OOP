@@ -6,8 +6,20 @@
 #include "SanPham.h"
 #include "User.h"
 #include "TroChoi.h"
+#include "MucGioHang.h"
+#include "DocFile.h"
 using namespace std;
+void DocFile(){
+    ifstream file("SanPham.txt");
+    vector<SanPham> ds;
+    SanPham sp;
+    while (file >> sp) {
+        ds.push_back(sp);
 
+    }
+ 
+    file.close();
+}
 void dangKi(){
     string tk, mk;
     
@@ -36,15 +48,14 @@ void dangNhap(){
     }
 }
 
+int TinhTien(int n){
+
+
+}
+
 
 int main() {
-    ifstream file("SanPham.txt");
-    vector<SanPham> ds;
-    SanPham sp;
-    while (file >> sp) {
-        ds.push_back(sp);
-
-    }
+    DocFile();
     string s = "========= MENU =========\n"
         "[1]. Dang ky tai khoan\n"
         "[2]. Dang nhap\n"
@@ -65,30 +76,52 @@ int main() {
             string s = "========= MENU =========\n"
             "[1]. Danh muc san pham\n"
             "[2]. Game\n"
-            "[3]. \n"
+            "[3]. Mua hang\n"
             "========================\n";
             cout << s <<endl;
-            char chon; cin >>chon ;
-            if(chon == '1'){
-                string dm;
-                cout <<"Chon danh muc san pham(ThucPham, ThucUong, CaNhan, GiaDung): ";
-                cin >> dm;
-                for(auto it : ds ){
-                    if(dm == it.getDanhMuc()){
-                        cout << it.getTen()<<" "<<it.getGia()<<endl;
+           
+            bool ok2 = true;
+            while(ok2){
+                char chon; cin >>chon ;
+                if(chon == '1'){
+                    string dm;
+                    cout <<"Chon danh muc san pham(ThucPham, ThucUong, CaNhan, GiaDung): ";
+                    cin >> dm;
+                    for(auto it : ds ){
+                        if(dm == it.getDanhMuc()){
+                            cout <<it.getMa()<<" "<<it.getTen()<<" "<<it.getGia()<<endl;
+                        } 
+
+                    }
+
+                }
+                else if(chon == '2' ){
+                    string ten;
+                    cin >> ten;
+                    TroChoi c(ten);
+                    c.BatDau();
+                    c.DoiThuong();
+                }
+                else if(chon == '3'){
+                    string tensp;
+                    cout <<"Nhap ten san pham muon mua: ";
+                    cin >>tensp;
                     
-                    } 
+                    int soluong;
+                    cout <<"Nhap so luong san pham: ";
+                    cin>> soluong;
+                    mucTrongGioHang m("",tensp,soluong);
+                    m.nhap();
+                    m.tinhTong(tensp);
+                    m.displayInfo();
+                    
+                    // m.displayInfo();
+                    
+
+
                 }
 
             }
-            else if(chon == '2' ){
-                string ten;
-                cin >> ten;
-                TroChoi c(ten);
-                c.BatDau();
-            }
-        
-            
         }
         else {
             cout << "Thoat thanh cong";

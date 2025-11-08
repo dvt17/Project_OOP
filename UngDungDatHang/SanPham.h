@@ -5,9 +5,13 @@ using namespace std;
 class SanPham
 {
 private:
-	string maSanPham, tenSanPham, danhMuc;
+	string maSanPham, danhMuc;
 	double gia, soLuongTon;
+
+protected:
+	string tenSanPham;
 public:
+	// SanPham(string ten =""): tenSanPham(ten){}
 	SanPham(string ma  ="", string ten="", string dm="", double g=0.0, double t=0.0) : maSanPham(ma), tenSanPham(ten), danhMuc(dm), gia(g), soLuongTon(t){}
 	friend istream& operator >>(istream& in, SanPham &x) {
 		in >> x.maSanPham >> x.tenSanPham >> x.danhMuc >> x.gia >> x.soLuongTon;

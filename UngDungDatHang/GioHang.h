@@ -5,29 +5,41 @@
 #include <map>
 #include "SanPham.h" 
 
-class GioHang : public mucTrongGioHang {
+class GioHang {
+
 private:
     // int soLuongHienTai; 
-    map<SanPham*, int> dsSanPham;
+    map<string, int> dsSanPham;
+    int count = 0;
+    mucTrongGioHang m;
 
-    // int timViTri(const SanPham& sanPham) {
-    //     for (int i=0; i<soLuongHienTai; i++) {
-    //         if (danhMuc[i].getSanPham().getMaSP() == sanPham.getMaSP()) {
-    //             return i;
-    //         }
-    //     }
-    //     return -1;
-    // }
 public:
-    GioHang(string ma, string ten, string dm, double g, double t, int quan = 0)
-        : mucTrongGioHang(ma,ten,dm,g,t,quan){}
-    void themSanPham(SanPham* sp, int soLuong) {
-        if (dsSanPham.count(sp)) {
+    GioHang(mucTrongGioHang _m)
+    
+    {
+        m = _m;
+        if(dsSanPham.empty()==false) {
+            dsSanPham.insert({m.getTen(),m.getSoLuong()});
+        
+        }
+        
+    }
+    void themSP(){
+    
+        for(auto i = dsSanPham.begin();i != dsSanPham.end();i++){
+            if(i->first == m.getTen() ){
+                i->second += m.getSoLuong();
+            }
+        }
+    }
+    
+    void phanLoaiSanPham(SanPham sp, int soLuong) {
+        if (sp.getTen()) {
             dsSanPham[sp] += soLuong;
-            std::cout << "==> Cap nhat so luong " << sp->getTen() << " thanh " << dsSanPham[sp] << std::endl;
+            cout << " Cap nhat so luong " << sp.getTen() << " thanh " << dsSanPham[sp] << std::endl;
         } else {
             dsSanPham[sp] = soLuong;
-            std::cout << "==> Da them " << soLuong << " " << sp->getTen() << " vao gio hang." << std::endl;
+            cout << "==> Da them " << soLuong << " " << sp.getTen() << " vao gio hang." << std::endl;
         }
     }
 
