@@ -4,47 +4,63 @@
 #include <vector>
 #include "SanPham.h"
 using namespace std;
+//extern vector<SanPham> ds;
 class mucTrongGioHang : public SanPham{
     //friend class DonHang;
     private:
         int soLuong;
         vector <SanPham> s;
     public:
-        mucTrongGioHang (string ma = "",string ten = "",int quan = 0)
-             : SanPham(ma,ten), soLuong(quan){}
-        // friend istream& operator>> (istream& in, mucTrongGioHang& c){
-        //     in >> c.tenSanPham>> c.soLuong;
-        //     return in;
-        // }
-        void nhap(){
-            DocFile();
+        mucTrongGioHang(){
+            
         }
+        mucTrongGioHang (string ma,string ten ,int quan)
+             : SanPham(ma,ten), soLuong(quan){}
+        
+        mucTrongGioHang nhapmuc(){
+            //vector <SanPham> s = DocFile();
+            // ifstream file("SanPham.txt");
+            // SanPham sp;
+            // while (file >> sp) {
+            //     s.push_back(sp);
+            // }
+            // file.close();
+            cout << "Nhap ten san pham muon mua: ";
+            cin >> tenSanPham;
+            cout << "Nhap so luong san pham: ";
+            cin >> soLuong;
+            mucTrongGioHang c("",tenSanPham,soLuong);
+            return c;
+        }
+        
         int getSoLuong() const { return soLuong;}
         void setSoLuong(int qty) { soLuong = qty;}
+        vector <SanPham> getSanPham() const{
+            return s;
+        }
+        
         int tinhTong(string ten)const {
             
             for(auto x : s){
-                
-                if(x.getTen() == ten ){
-
+            
+                if (x.getTen() == tenSanPham)
                     return x.getGia() * soLuong;
-                }
+        
+                // if(x.getTen() == ten ){
+
+                //     return x.getGia() * soLuong;
+                // }
             }
-            return 1;
+            return 0;
             
         }
 
-        void displayInfo(){
+        void displayInfo() const  {
             cout << "Ten san pham: " << tenSanPham<< endl;
             cout << "So luong san pham: " << soLuong << endl;
             cout << "Thanh tien: " << tinhTong(tenSanPham) << endl;
         }
-        // friend ostream& operator<< (ostream& out, mucTrongGioHang& c){
-        //     out << "Ten san pham: " << c.tenSanPham << endl;
-        //     out << "So luong san pham: " << c.soLuong << endl;
-        //     // out << "Thanh tien: " << c.tinhTong() << endl;
-        //     return out;
-        // }
+  
         ~mucTrongGioHang(){}
         
 };

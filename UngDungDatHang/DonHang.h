@@ -16,20 +16,21 @@ class DonHang {
         double tongDonHang;
         string trangThai;
     public:
-        DonHang (string id, tm od, tm estimate, vector<CartItem> item, double fee, double sum)
-        : maDon(id), ngayDatHang(od), duTinhNgayGiaoHang(estimate), donHang(item), phiShip(fee),
+        DonHang (string id, tm od, tm estimate, vector<mucTrongGioHang> items = {}, double fee, double sum)
+        : maDon(id), ngayDatHang(od), duTinhNgayGiaoHang(estimate), donHang(items), phiShip(fee),
         tongDonHang(sum), trangThai("Cho xac nhan"){
-            tinhNgayGiaoHang();
+            // tinhNgayGiaoHang();
         } 
         double tinhPhiShip()// cho phi giao hang = 10% tong don hang
         {
+            
            phiShip =  0.1 *  tongDonHang;
            return phiShip;
         }
         double tinhTongDonHang(){
             tongDonHang = 0;
             for (mucTrongGioHang& item : donHang){
-                tongDonHang += item.tinhTong();
+                tongDonHang += item.tinhTong(item.getTen());
             }
             tongDonHang += phiShip;
             return tongDonHang;
@@ -38,7 +39,7 @@ class DonHang {
             trangThai = "Dang giao";
             for (mucTrongGioHang& item : donHang){
                 SanPham product = item;
-                double newQuantity = product.getSoLuongTon() - item.getQuantity();
+                double newQuantity = product.getSoLuongTon() - item.getSoLuong();
                 product.updateSoLuongTon(newQuantity);
             }
         };

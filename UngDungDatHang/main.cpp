@@ -7,18 +7,19 @@
 #include "User.h"
 #include "TroChoi.h"
 #include "MucGioHang.h"
-#include "DocFile.h"
+#include "GioHang.h"
+
 using namespace std;
-void DocFile(){
-    ifstream file("SanPham.txt");
-    vector<SanPham> ds;
+// vector<SanPham> ds;
+extern vector <SanPham>  DocFile(const string tenFile = "SanPham.txt"){
+    ifstream file(tenFile);
     SanPham sp;
+    vector<SanPham> ds;
     while (file >> sp) {
         ds.push_back(sp);
-
     }
- 
     file.close();
+    return ds;
 }
 void dangKi(){
     string tk, mk;
@@ -48,14 +49,24 @@ void dangNhap(){
     }
 }
 
-int TinhTien(int n){
+// int TinhTien(int n){
 
 
-}
+// }
 
 
 int main() {
-    DocFile();
+    // ifstream file("SanPham.txt");
+    // vector<SanPham> ds;
+    // SanPham sp;
+    // while (file >> sp) {
+    //     ds.push_back(sp);
+
+    // }
+ 
+    // file.close();
+
+    vector<SanPham> ds = DocFile();
     string s = "========= MENU =========\n"
         "[1]. Dang ky tai khoan\n"
         "[2]. Dang nhap\n"
@@ -76,7 +87,7 @@ int main() {
             string s = "========= MENU =========\n"
             "[1]. Danh muc san pham\n"
             "[2]. Game\n"
-            "[3]. Mua hang\n"
+            "[3]. Gio hang\n"
             "========================\n";
             cout << s <<endl;
            
@@ -103,22 +114,46 @@ int main() {
                     c.DoiThuong();
                 }
                 else if(chon == '3'){
-                    string tensp;
-                    cout <<"Nhap ten san pham muon mua: ";
-                    cin >>tensp;
+                    // string tensp;
+                    // cout <<"Nhap ten san pham muon mua: ";
+                    // cin >>tensp;
                     
-                    int soluong;
-                    cout <<"Nhap so luong san pham: ";
-                    cin>> soluong;
-                    mucTrongGioHang m("",tensp,soluong);
-                    m.nhap();
-                    m.tinhTong(tensp);
-                    m.displayInfo();
+                    // int soluong;
+                    // cout <<"Nhap so luong san pham: ";
+                    // cin>> soluong;
                     
+                    // m.nhapmuc();
+                    // m.tinhTong(m.getTen());
                     // m.displayInfo();
+                    // GioHang gh(m);
+
+                    // gh.xemGioHang();
+
+                }
+                else if(chon == '4'){
+                    mucTrongGioHang m;
                     
+                    GioHang gh; 
+                    cout << "=== CHUONG TRINH QUAN LY GIO HANG ===\n";
 
+                    // Nhập sản phẩm vào giỏ
+                    gh.nhap();
 
+                    // Hiển thị thông tin giỏ hàng
+                    gh.xuat();
+
+                    // Xóa sản phẩm (tùy chọn)
+                    char xoa;
+                    cout << "\nBan co muon xoa san pham nao? (y/n): ";
+                    cin >> xoa;
+                    if (xoa == 'y' || xoa == 'Y') {
+                        string tenXoa;
+                        cout << "Nhap ten san pham muon xoa: ";
+                        cin.ignore();
+                        getline(cin, tenXoa);
+                        gh.xoaMuc(tenXoa);
+                        gh.xuat();
+                    }
                 }
 
             }
