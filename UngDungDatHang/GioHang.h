@@ -20,8 +20,15 @@ public:
     // Thêm 1 mục vào giỏ hàng
 
     void themMuc(mucTrongGioHang m) {
-            for(auto& x : dsMuc){
-                if(m.getTen() == x.first){
+        if (dsMuc.empty()) {
+            n = 0;
+            n += m.getSoLuong();
+            m.setSoLuong(n);
+            dsMuc[m.getTen()] = m;
+        }
+        else {
+            for (auto& x : dsMuc) {
+                if (m.getTen() == x.first) {
                     n += m.getSoLuong();
                     m.setSoLuong(n);
                     dsMuc[m.getTen()] = m;
@@ -33,9 +40,10 @@ public:
                     dsMuc[m.getTen()] = m;
                 }
             }
+        }
     }
 
- 
+
     void nhap() {
         int n;
         cout << "Nhap so luong san pham muon mua: ";
@@ -43,7 +51,7 @@ public:
         for (int i = 0; i < n; ++i) {
             cout << "\nSan pham thu " << i + 1 << " ---" << endl;
             mucTrongGioHang m;
-            themMuc( m.nhapmuc());
+            themMuc(m.nhapmuc());
         }
     }
 
@@ -51,10 +59,10 @@ public:
     void xuat() const {
         cout << "\n===== THONG TIN GIO HANG =====\n";
         for (auto& x : dsMuc) {
-            cout << "Ten san pham: " << x.first<< endl;
-            cout << "So luong san pham: " << x.second.getSoLuong()<< endl;
+            cout << "Ten san pham: " << x.first << endl;
+            cout << "So luong san pham: " << x.second.getSoLuong() << endl;
             cout << "Thanh tien: " << x.second.tinhTong(x.second.getTen()) << endl;
-        
+
             cout << "--------------------------\n";
         }
         cout << "Tong tien cua gio hang: " << tinhTongTien() << endl;
@@ -64,7 +72,7 @@ public:
     int tinhTongTien() const {
         int tong = 0;
         for (auto& x : dsMuc) {
-            tong += x.second.getSoLuong() * x.second.getGia(); // Hoặc m.tinhTong()
+            tong += x.second.getSoLuong() * x.second.tinhTong(x.second.getTen()); // Hoặc m.tinhTong()
         }
         return tong;
     }
@@ -82,71 +90,71 @@ public:
     }
 
 
-/*private:
-    // int soLuongHienTai; 
-    map<string, int> dsSanPham;
-    int count = 0;
-    mucTrongGioHang m;
+    /*private:
+        // int soLuongHienTai;
+        map<string, int> dsSanPham;
+        int count = 0;
+        mucTrongGioHang m;
 
-   
-public:
-    GioHang(mucTrongGioHang _m)
-    
-    {
-        m = _m;
-        if(dsSanPham.empty()) {
-            dsSanPham.insert({m.getTen(),m.getSoLuong()});
-        
-        }
-        else{
-           for(auto i = dsSanPham.begin();i != dsSanPham.end();i++){
-                if(i->first == m.getTen() ){
-                    i->second += m.getSoLuong();
-                }
-                else {
-                    dsSanPham.insert({m.getTen(),m.getSoLuong()});
-                }
+
+    public:
+        GioHang(mucTrongGioHang _m)
+
+        {
+            m = _m;
+            if(dsSanPham.empty()) {
+                dsSanPham.insert({m.getTen(),m.getSoLuong()});
+
             }
-        
-        
-         }
-    }
-    int tinhTien() const {
-        int tinhtien = 0;
-        for(auto i = dsSanPham.begin();i != dsSanPham.end();i++){
-            for(auto x : ds){
-                if(i->first == x.getTen()){
-                    tinhtien = x.getGia() * i->second;
+            else{
+               for(auto i = dsSanPham.begin();i != dsSanPham.end();i++){
+                    if(i->first == m.getTen() ){
+                        i->second += m.getSoLuong();
+                    }
+                    else {
+                        dsSanPham.insert({m.getTen(),m.getSoLuong()});
+                    }
                 }
+
+
+             }
+        }
+        int tinhTien() const {
+            int tinhtien = 0;
+            for(auto i = dsSanPham.begin();i != dsSanPham.end();i++){
+                for(auto x : ds){
+                    if(i->first == x.getTen()){
+                        tinhtien = x.getGia() * i->second;
+                    }
+                }
+
             }
-            
-        }
-        return tinhtien;
-
-    }
-
-    void xemGioHang() const {
-        cout << "--- GIO HANG CUA BAN ---\n";
-        if (dsSanPham.empty()) {
-            cout << "Gio hang dang trong!\n";
-            return;
-        }
-        for(auto i = dsSanPham.begin(); i!=dsSanPham.end();i++){
-            cout << i->first <<" "<< i->second<<endl;
+            return tinhtien;
 
         }
-        cout << "-----------------------------------\n";
-        cout << "==> TONG CONG: "  << tinhTien() << " VND" << std::endl;
-    }
+
+        void xemGioHang() const {
+            cout << "--- GIO HANG CUA BAN ---\n";
+            if (dsSanPham.empty()) {
+                cout << "Gio hang dang trong!\n";
+                return;
+            }
+            for(auto i = dsSanPham.begin(); i!=dsSanPham.end();i++){
+                cout << i->first <<" "<< i->second<<endl;
+
+            }
+            cout << "-----------------------------------\n";
+            cout << "==> TONG CONG: "  << tinhTien() << " VND" << std::endl;
+        }
 
 
-    bool isEmpty() const {
-        return dsSanPham.empty();
-    }
+        bool isEmpty() const {
+            return dsSanPham.empty();
+        }
 
-    // Getter (dùng cho lớp DonHang)
-    // const map<SanPham*, int>& getDsSanPham() const {
-    //     return dsSanPham;
-    // }
-*/ 
+        // Getter (dùng cho lớp DonHang)
+        // const map<SanPham*, int>& getDsSanPham() const {
+        //     return dsSanPham;
+        // }
+    */
 };
