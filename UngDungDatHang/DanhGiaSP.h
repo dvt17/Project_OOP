@@ -3,35 +3,42 @@
 #include <string>
 using namespace std;
 
-class DanhGia {
+class DanhGia
+{
 private:
-    string maDanhGia;
-    string maKhachHang;
-    string maSanPham;   
-    float diem; 
-    string binhLuan;   
-public:
-    DanhGia(string maDG = "", string maKH = "", string maSP = "", float d = 0, string bl = "")
-        : maDanhGia(maDG), maKhachHang(maKH), maSanPham(maSP), diem(d), binhLuan(bl) {}
+    float diem;
+    string binhLuan;
 
-    string getMaDanhGia() const { return maDanhGia; }
-    string getMaKhachHang() const { return maKhachHang; }
-    string getMaSanPham() const { return maSanPham; }
+public:
+    DanhGia(float d = 0, string bl = "")
+        : diem(d), binhLuan(bl) {}
+    friend ostream &operator<<(ostream &out, const DanhGia &d)
+    {
+        out << d.diem << d.binhLuan;
+        return out;
+    }
+    friend istream &operator>>(istream &in, DanhGia &d)
+    {
+        in >> d.diem >> d.binhLuan;
+        return in;
+    }
     float getDiem() const { return diem; }
     string getBinhLuan() const { return binhLuan; }
 
-    void setDiem(float d) {
-        if(d >= 1 && d <= 5) diem = d;
-        else diem = 1;   
+    void setDiem(float d)
+    {
+        if (d >= 1 && d <= 5)
+            diem = d;
+        else
+            diem = 1;
     }
-    void setBinhLuan(string b){
+    void setBinhLuan(string b)
+    {
         binhLuan = b;
     }
 
-    void display() const {
-        cout << "\n Danh Gia " << maDanhGia << endl;
-        cout << "Nguoi dung (Ma KH): " << maKhachHang << endl;
-        cout << "San pham (Ma SP): " << maSanPham << endl;
+    void display() const
+    {
         cout << "Diem: " << diem << "/5 sao" << endl;
         cout << "Binh luan: " << binhLuan << endl;
     }

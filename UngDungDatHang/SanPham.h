@@ -1,6 +1,6 @@
 #pragma once
-#include<iostream>
-#include<string>
+#include <iostream>
+#include <string>
 using namespace std;
 class SanPham
 {
@@ -10,14 +10,16 @@ private:
 
 protected:
 	string tenSanPham;
+
 public:
-	// SanPham(string ten =""): tenSanPham(ten){}
-	SanPham(string ma  ="", string ten="", string dm="", double g=0.0, double t=0.0) : maSanPham(ma), tenSanPham(ten), danhMuc(dm), gia(g), soLuongTon(t){}
-	friend istream& operator >>(istream& in, SanPham &x) {
+	SanPham(string ma = "", string ten = "", string dm = "", double g = 0.0, double t = 0.0) : maSanPham(ma), tenSanPham(ten), danhMuc(dm), gia(g), soLuongTon(t) {}
+	friend istream &operator>>(istream &in, SanPham &x)
+	{
 		in >> x.maSanPham >> x.tenSanPham >> x.danhMuc >> x.gia >> x.soLuongTon;
 		return in;
 	}
-	friend ostream& operator <<(ostream& out, const SanPham& x) {
+	friend ostream &operator<<(ostream &out, const SanPham &x)
+	{
 		out << "Ma San Pham: " << x.maSanPham << endl;
 		out << "Ten San Pham: " << x.tenSanPham << endl;
 		out << "Danh Muc: " << x.danhMuc << endl;
@@ -25,24 +27,29 @@ public:
 		out << "so Luong Ton Kho: " << x.soLuongTon << endl;
 		return out;
 	}
-	string getMa() const {
+	string getMa() const
+	{
 		return maSanPham;
 	}
-	string getTen() const{
+	string getTen() const
+	{
 		return tenSanPham;
 	}
-	double getSoLuongTon() const{
+	double getSoLuongTon() const
+	{
 		return soLuongTon;
 	}
-	double getGia() const{
+	double getGia() const
+	{
 		return gia;
 	}
-	string getDanhMuc() const {
+	string getDanhMuc() const
+	{
 		return danhMuc;
 	}
-	void updateSoLuongTon(int newSoLuongTon){
+	void updateSoLuongTon(int newSoLuongTon)
+	{
 		soLuongTon = newSoLuongTon;
 	}
-	~SanPham(){}
+	~SanPham() {}
 };
-
