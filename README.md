@@ -1,20 +1,44 @@
 # ỨNG DỤNG ĐẶT HÀNG
 
+``` bash
+UngDungDatHang/
+├── DanhGiaSP.h
+├── DiaChi.h
+├── DonHang.h
+├── GioHang.h
+├── KhachHang.h
+├── MaGiam.h
+├── MucGioHang.h
+├── OOP_Bangphancong.xlsx
+├── SanPham.h
+├── SanPham.txt
+├── TroChoi.h
+├── TroChoi.txt
+├── User.h
+├── main.cpp
+└── users.txt
+```
+
 - **Data:** tên sản phẩm, giá, số lượng; địa chỉ, sdt.
 - **Class:** giỏ hàng, đơn hàng(đặt, thông tin đơn), thời gian.đặt hàng, game, khách hàng, sản phẩm, quản lý sản phẩm, ứng dụng, đánh giá.
 
-## Class Product (Sản phẩm)- Hà Ngọc Phúc
+## Class SanPham
 
 - **Chức năng:** Đại diện cho một mặt hàng trong cửa hàng.
 - **Thuộc tính:**
-  - productId (String/int): Mã sản phẩm (duy nhất).
-  - name (String): Tên sản phẩm.
-  - description (String): Mô tả sản phẩm.
-  - price (double): Giá tiền.
-  - category (String): Danh mục sản phẩm (ví dụ: Điện tử, Thời trang).
-  - stockQuantity (int): Số lượng tồn kho.
+  - *private:* maSanpham, danhMuc, gia, soLuongTon.
+  - *protected:* tenSanPham.
 - **Phương thức:**
-  - displayInfo(): Hiển thị thông tin sản phẩm.
+  - Constructor
+  - getMa()
+  - getTen()
+  - getSoLuongTon()
+  - getGia()
+  - getDanhmuc()
+  - updateSoLuongTon()
+  - destructor
+- Qúa tải toán tử nhập, xuất.
+- **Kiến thức áp dụng:**
 
 ## Class Customer (Khách hàng)- Hà Ngọc Phúc
 
