@@ -39,6 +39,9 @@ UngDungDatHang/
   - destructor
 - Qúa tải toán tử nhập, xuất.
 - **Kiến thức áp dụng:**
+  + Áp dụng kiến thức chương 2: get/set, hàm khởi tạo, hàm huỷ.
+  + Áp dụng kiến thức chương 3: Quá tải toán tử (quá tải toán tử xuất, nhập).
+  + Áp dụng kiến thức chương 4: Thành viên protected.
 
 ## Class Customer (Khách hàng)- Hà Ngọc Phúc
 
@@ -62,6 +65,7 @@ UngDungDatHang/
 - **Phương thức:**
   - calculateSubTotal(): Tính thành tiền cho mục này (product.price * quantity).
   - displayInfo(): Hiển thị thông tin (tên SP, số lượng, thành tiền).
+  - 
 
 ## Class ShoppingCart (Giỏ hàng) - Vũ Ngọc Thu Trâm
 
@@ -76,7 +80,7 @@ UngDungDatHang/
   - displayCart(): Hiển thị toàn bộ nội dung giỏ hàng.
   - clearCart(): Xóa toàn bộ giỏ hàng (sau khi đặt hàng thành công).
 
-## Class Order (Đơn hàng)- Nguyễn Tống Xuân Bình
+## Class Order (Đơn hàng)
 
 - **Chức năng:** Đại diện cho một giao dịch đặt hàng hoàn chỉnh, được tạo ra từ ShoppingCart và thông tin Customer.
 - **Thuộc tính:**
